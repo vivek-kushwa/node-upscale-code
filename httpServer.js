@@ -166,7 +166,7 @@ Sed elit purus etiam primis. Penatibus primis phasellus vivamus ac cras tincidun
 const server = http.createServer((req, res) => {
   console.log(req.url);
   if (req.url === "/") {
-    fs.readFile("./modules/public.html", "utf-8", (error, data) => {
+    fs.readFile("./modules/public.html", (error, data) => {
       if (error) {
         res.writeHead(404, { "Content-Type": "text/html" });
         res.end(`<h1>Page not found</h1>`);
@@ -175,7 +175,7 @@ const server = http.createServer((req, res) => {
       res.end(data);
     });
   } else if (req.url === "/create-file") {
-    fs.writeFile("./modules/public.html", data, "utf-8", (error) => {
+    fs.writeFile("./modules/public.html", data, (error) => {
       res.writeHead(201, { "Content-Type": "text/html" });
       res.end(`<h1>File created successfully!</h1>`);
     });
